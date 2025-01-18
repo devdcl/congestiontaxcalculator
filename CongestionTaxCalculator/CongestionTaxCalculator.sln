@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35521.163 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CongestionTaxCalculator", "CongestionTaxCalculator.csproj", "{C0064E52-75F3-45DC-B646-0DE027163790}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CongestionTaxCalculator", "Domain/CongestionTaxCalculator.csproj", "{C0064E52-75F3-45DC-B646-0DE027163790}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{B23D9662-8849-4618-A166-F0084CBBF000}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{D45A2C09-0927-4348-B935-5686BC091F6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CongestionTax.Calculator.Api", "CongestionTax.Calculator.Api\CongestionTax.Calculator.Api.csproj", "{5BC68E49-F7D3-438B-8DE7-8A258F389B36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +21,16 @@ Global
 		{C0064E52-75F3-45DC-B646-0DE027163790}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0064E52-75F3-45DC-B646-0DE027163790}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0064E52-75F3-45DC-B646-0DE027163790}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BC68E49-F7D3-438B-8DE7-8A258F389B36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BC68E49-F7D3-438B-8DE7-8A258F389B36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BC68E49-F7D3-438B-8DE7-8A258F389B36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BC68E49-F7D3-438B-8DE7-8A258F389B36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C0064E52-75F3-45DC-B646-0DE027163790} = {B23D9662-8849-4618-A166-F0084CBBF000}
+		{5BC68E49-F7D3-438B-8DE7-8A258F389B36} = {D45A2C09-0927-4348-B935-5686BC091F6C}
 	EndGlobalSection
 EndGlobal

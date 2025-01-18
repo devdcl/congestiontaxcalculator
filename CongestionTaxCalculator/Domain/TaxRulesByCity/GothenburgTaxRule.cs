@@ -1,41 +1,8 @@
-﻿using Congestion.TaxCalculator;
+namespace Congestion.TaxCalculator.TaxRulesByCity;
 
-public class CongestionTaxCalculator
+public class GothenburgTaxRule : ITaxRule
 {
-    /// <summary>
-    /// Calculate the total toll fee for one day
-    /// </summary>
-    /// <param name="vehicle">the vehicle</param>
-    /// <param name="dates">date and time of all passes on one day</param>
-    /// <returns>the total congestion tax for that day</returns>
-    public int GetTax(Vehicle vehicle, DateTime[] dates)
-    {
-        DateTime intervalStart = dates[0];
-        int totalFee = 0;
-        foreach (DateTime date in dates)
-        {
-            int nextFee = GetTollFee(date, vehicle);
-            int tempFee = GetTollFee(intervalStart, vehicle);
-
-            long diffInMillies = date.Millisecond - intervalStart.Millisecond;
-            long minutes = diffInMillies / 1000 / 60;
-
-            if (minutes <= 60)
-            {
-                if (totalFee > 0) totalFee -= tempFee;
-                if (nextFee >= tempFee) tempFee = nextFee;
-                totalFee += tempFee;
-            }
-            else
-            {
-                totalFee += nextFee;
-            }
-        }
-        if (totalFee > 60) totalFee = 60;
-        return totalFee;
-    }
-
-    private bool IsTollFreeVehicle(Vehicle vehicle)
+    private bool IsTollFreeVehicle(IVehicle? vehicle)
     {
         if (vehicle == null) return false;
         String vehicleType = vehicle.GetVehicleType();
@@ -47,7 +14,7 @@ public class CongestionTaxCalculator
                vehicleType.Equals(TollFreeVehicles.Military.ToString());
     }
 
-    public int GetTollFee(DateTime date, Vehicle vehicle)
+    public int GetTollFee(DateTime date, IVehicle vehicle)
     {
         if (IsTollFreeDate(date) || IsTollFreeVehicle(vehicle)) return 0;
 
@@ -58,7 +25,7 @@ public class CongestionTaxCalculator
         else if (hour == 6 && minute >= 30 && minute <= 59) return 13;
         else if (hour == 7 && minute >= 0 && minute <= 59) return 18;
         else if (hour == 8 && minute >= 0 && minute <= 29) return 13;
-        else if (hour >= 8 && hour <= 14 && minute >= 30 && minute <= 59) return 8;
+        else if (hour >= 8 && hour <= 14 && (hour == 8 ? minute >= 30 : minute >= 0) &&  minute <= 59) return 8;
         else if (hour == 15 && minute >= 0 && minute <= 29) return 13;
         else if (hour == 15 && minute >= 0 || hour == 16 && minute <= 59) return 18;
         else if (hour == 17 && minute >= 0 && minute <= 59) return 13;
