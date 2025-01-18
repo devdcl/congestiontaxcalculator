@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Congestion.TaxCalculator
 {
-    public class Car : Vehicle
+    public class Car : IVehicle
     {
         public String GetVehicleType()
         {
